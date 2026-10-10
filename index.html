@@ -86,11 +86,15 @@ input {
       inputmode="numeric"
     >
 
-    <button onclick="commander()">
-      Commander maintenant
-    </button>
-  </div>
-</div>
+    <button onclick="commander('50940616775')">
+  Commander via WhatsApp 1
+</button>
+
+<br><br>
+
+<button onclick="commander('50936219911')">
+  Commander via WhatsApp 2
+</button>
 
 <div class="card">
   <h3>🎯 PUBG Mobile</h3>
@@ -123,22 +127,27 @@ function afficherOffres() {
   }
 }
 
-function commander() {
+function commander(numero) {
   const id = document.getElementById("playerID").value.trim();
 
   if (!/^[0-9]+$/.test(id)) {
-    alert("Veuillez entrer un ID Free Fire valide.");
+    alert("Veuillez entrer votre ID Free Fire.");
     return;
   }
 
-  alert(
-    "Votre commande :\n" +
+  const message =
+    "Bonjour EME TOP UP SHOP ! 🎮\n\n" +
+    "Je souhaite commander :\n" +
     "Jeu : Free Fire\n" +
-    "Offre : 160 Diamonds\n" +
+    "Offre : 160 Diamonds 💎\n" +
     "Prix : 210 HTG\n" +
-    "ID : " + id + "\n\n" +
-    "Commande non envoyée. Le paiement sera ajouté prochainement."
-  );
+    "ID Free Fire : " + id + "\n\n" +
+    "Merci de me communiquer les instructions de paiement.";
+
+  const lien = "https://wa.me/" + numero +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(lien, "_blank");
 }
 
 function bientot() {
