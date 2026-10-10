@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EME TOP UP SHOP</title>
+
 <style>
 body {
   margin: 0;
@@ -11,19 +12,24 @@ body {
   background: #101827;
   color: white;
 }
+
 header {
   background: #1769ff;
   padding: 25px;
   text-align: center;
 }
-h1 { margin: 0; }
-main { padding: 20px; }
+
+main {
+  padding: 20px;
+}
+
 .card {
   background: #202d42;
   padding: 20px;
   margin: 15px 0;
   border-radius: 12px;
 }
+
 button {
   background: #00c896;
   color: #071522;
@@ -31,43 +37,114 @@ button {
   padding: 12px;
   border-radius: 8px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.offres {
+  display: none;
+  margin-top: 15px;
+}
+
+input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
 }
 </style>
 </head>
+
 <body>
 
 <header>
-<h1>🎮 EME TOP UP SHOP 💎</h1>
-<p>Rechargez vos jeux préférés !</p>
+  <h1>🎮 EME TOP UP SHOP 💎</h1>
+  <p>Rechargez vos jeux préférés !</p>
 </header>
 
 <main>
+
 <h2>Choisissez votre jeu</h2>
 
 <div class="card">
-<h3>🔥 Free Fire</h3>
-<p>Recharge de Diamonds</p>
-<button>Voir les offres</button>
+  <h3>🔥 Free Fire</h3>
+  <p>Recharge de Diamonds</p>
+
+  <button onclick="afficherOffres()">
+    Voir les offres
+  </button>
+
+  <div class="offres" id="offresFF">
+    <h3>💎 Offres Free Fire</h3>
+    <p>160 Diamonds — <strong>210 HTG</strong></p>
+
+    <label for="playerID">Votre ID Free Fire :</label>
+    <input
+      type="text"
+      id="playerID"
+      placeholder="Entrez votre ID"
+      inputmode="numeric"
+    >
+
+    <button onclick="commander()">
+      Commander maintenant
+    </button>
+  </div>
 </div>
 
 <div class="card">
-<h3>🎯 PUBG Mobile</h3>
-<p>Recharge de UC</p>
-<button>Voir les offres</button>
+  <h3>🎯 PUBG Mobile</h3>
+  <p>Recharge de UC</p>
+  <button onclick="bientot()">Voir les offres</button>
 </div>
 
 <div class="card">
-<h3>⚔️ Mobile Legends</h3>
-<p>Recharge de Diamonds</p>
-<button>Voir les offres</button>
+  <h3>⚔️ Mobile Legends</h3>
+  <p>Recharge de Diamonds</p>
+  <button onclick="bientot()">Voir les offres</button>
 </div>
 
 <div class="card">
-<h3>⚽ eFootball</h3>
-<p>Recharge de pièces</p>
-<button>Voir les offres</button>
+  <h3>⚽ eFootball</h3>
+  <p>Recharge de pièces</p>
+  <button onclick="bientot()">Voir les offres</button>
 </div>
 
 </main>
+
+<script>
+function afficherOffres() {
+  const offres = document.getElementById("offresFF");
+
+  if (offres.style.display === "block") {
+    offres.style.display = "none";
+  } else {
+    offres.style.display = "block";
+  }
+}
+
+function commander() {
+  const id = document.getElementById("playerID").value.trim();
+
+  if (!/^[0-9]+$/.test(id)) {
+    alert("Veuillez entrer un ID Free Fire valide.");
+    return;
+  }
+
+  alert(
+    "Votre commande :\n" +
+    "Jeu : Free Fire\n" +
+    "Offre : 160 Diamonds\n" +
+    "Prix : 210 HTG\n" +
+    "ID : " + id + "\n\n" +
+    "Commande non envoyée. Le paiement sera ajouté prochainement."
+  );
+}
+
+function bientot() {
+  alert("Les offres seront disponibles prochainement !");
+}
+</script>
+
 </body>
 </html>
