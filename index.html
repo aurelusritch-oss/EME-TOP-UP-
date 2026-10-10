@@ -85,7 +85,30 @@ input {
       placeholder="Entrez votre ID"
       inputmode="numeric"
     >
+    <h3>💳 Mode de paiement</h3>
+<label for="paiement">Choisissez votre paiement :</label>
 
+<select id="paiement" onchange="afficherPaiement()"
+style="width:100%;padding:12px;border-radius:8px;margin:10px 0;">
+  <option value="">-- Choisir --</option>
+  <option value="MonCash">MonCash</option>
+  <option value="NatCash">NatCash</option>
+</select>
+
+<div id="infosPaiement" style="display:none;background:#101827;padding:15px;border-radius:10px;">
+
+  <p id="numeroPaiement"></p>
+  <p><strong>Montant : 210 HTG</strong></p>
+
+  <label for="reference">Référence de transaction :</label>
+  <input type="text" id="reference"
+  placeholder="Entrez la référence du paiement">
+
+  <p style="font-size:13px;">
+    Commande traitée après vérification du paiement.
+  </p>
+
+</div>
     <button onclick="commander('50940616775')">
   Commander via WhatsApp 1
 </button>
@@ -134,14 +157,40 @@ function commander(numero) {
     alert("Veuillez entrer votre ID Free Fire.");
     return;
   }
+  
+const paiement = document.getElementById("paiement").value;
+const reference = document.getElementById("reference").value.trim();
 
+if (!paiement) {
+  alert("Veuillez choisir MonCash ou NatCash.");
+  return;
+}
+
+if (!reference) {
+  alert("Veuillez entrer la référence de transaction.");
+  return;
+}
+  const paiement = document.getElementById("paiement").value;
+const reference = document.getElementById("reference").value.trim();
+
+if (!paiement) {
+  alert("Veuillez choisir MonCash ou NatCash.");
+  return;
+}
+
+if (!reference) {
+  alert("Veuillez entrer la référence de transaction.");
+  return;
+}
   const message =
     "Bonjour EME TOP UP SHOP ! 🎮\n\n" +
     "Je souhaite commander :\n" +
     "Jeu : Free Fire\n" +
     "Offre : 160 Diamonds 💎\n" +
     "Prix : 210 HTG\n" +
-    "ID Free Fire : " + id + "\n\n" +
+    "ID Free Fire : " + id + "\n" +
+"Paiement : " + paiement + "\n" +
+"Référence : " + reference + "\n\n" +
     "Merci de me communiquer les instructions de paiement.";
 
   const lien = "https://wa.me/" + numero +
@@ -149,10 +198,29 @@ function commander(numero) {
 
   window.open(lien, "_blank");
 }
+function afficherPaiement() {
+  const methode = document.getElementById("paiement").value;
+  const infos = document.getElementById("infosPaiement");
+  const numero = document.getElementById("numeroPaiement");
 
+  if (methode === "MonCash") {
+    numero.textContent =
+      "Envoyez 210 HTG via MonCash au : +509 3101 4262";
+    infos.style.display = "block";
+
+  } else if (methode === "NatCash") {
+    numero.textContent =
+      "Envoyez 210 HTG via NatCash au : +509 5673 2705";
+    infos.style.display = "block";
+
+  } else {
+    infos.style.display = "none";
+  }
+}
 function bientot() {
   alert("Les offres seront disponibles prochainement !");
 }
+
 </script>
 
 </body>
